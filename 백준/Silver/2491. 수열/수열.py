@@ -1,24 +1,24 @@
 n = int(input())
-arr = list(map(int, input().split()))
+arr = list(map(int,input().split()))
 
-# 증가(같거나 커지는) 구간
-inc = 1
-max_inc = 1
-for i in range(1, n):
-    if arr[i-1] <= arr[i]:
-        inc += 1
-    else:
-        inc = 1
-    max_inc = max(max_inc, inc)
-
-# 감소(같거나 작아지는) 구간
+# 연속구간이므로 1부터 시작 
 dec = 1
+aec = 1
 max_dec = 1
-for i in range(1, n):
-    if arr[i-1] >= arr[i]:
+max_aec = 1
+
+for i in range(1,n):
+    if arr[i-1] <= arr[i]:
         dec += 1
     else:
         dec = 1
-    max_dec = max(max_dec, dec)
+    max_dec = max(dec, max_dec)
 
-print(max(max_inc, max_dec))
+for i in range(1, n):
+    if arr[i-1] >= arr[i]:
+        aec += 1
+    else:
+        aec = 1
+    max_aec = max(aec, max_aec)
+    
+print(max(max_aec,max_dec))
