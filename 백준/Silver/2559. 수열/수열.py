@@ -1,13 +1,10 @@
-N , K = list(map(int,input().split()))
-daytmp = list(map(int,input().split()))
-sumtmp = 0
-max_tmp = 0
+N,K = map(int,input().split())
+arr = list(map(int,input().split()))
 
-current = sum(daytmp[:K])
-max_tmp = current
+window_sum = sum(arr[:K])
+max_sum = window_sum
 
-for i in range(1,N - K + 1):
-    current = current - daytmp[i - 1] + daytmp[i + K - 1]
-    if current > max_tmp:
-        max_tmp = current
-print(max_tmp)
+for i in range(K,N):
+    window_sum = window_sum - arr[i-K] + arr[i]
+    max_sum = max(max_sum,window_sum)
+print(max_sum)
