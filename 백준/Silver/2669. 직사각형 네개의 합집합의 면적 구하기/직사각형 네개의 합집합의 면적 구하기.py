@@ -1,20 +1,18 @@
-import sys
-
+paper = [[0]*101 for _ in range(101)]
 cnt = 0
-visited = [[0]*100 for _ in range(100)]
-for tc in range(4):
-    arr = list(map(int,sys.stdin.readline().split()))
-    # x의 끝점
-    square_x = abs(int(arr[0] - arr[2]))
-    # y의 끝점
-    square_y = abs(int(arr[1] - arr[3]))
+for _ in range(4):
+    ldx,ldy,rux,ruy = map(int,input().split())
 
-    for squere_col in range(arr[1],(arr[1]+square_y)):
-        for squere_row in range(arr[0],(arr[0]+square_x)):
-            visited[squere_col][squere_row] = 1
+    # 사각형 구해서 표시하기
+    # 기존 값에서 더하는게 아니라 rux 좌표를 주기 때문에 그냥 거기까지 딱 하면 됟다
+    for r in range(ldx,rux):
+        for c in range(ldy,ruy):
+            paper[c][r] = 1
 
-for row in range(len(visited)):
-    for col in range(len(visited)):
-        if visited[row][col] == 1:
-            cnt+=1
+
+
+for row in range(101):
+    for col in range(101):
+        if paper[row][col] >= 1:
+            cnt += 1
 print(cnt)
