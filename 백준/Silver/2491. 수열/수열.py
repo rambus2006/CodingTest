@@ -1,18 +1,24 @@
-import sys
+n = int(input())
+arr = list(map(int, input().split()))
 
-arrlen = int(sys.stdin.readline().rstrip())
-arr = list(map(int,sys.stdin.readline().split()))
+# 증가(같거나 커지는) 구간
+inc = 1
+max_inc = 1
+for i in range(1, n):
+    if arr[i-1] <= arr[i]:
+        inc += 1
+    else:
+        inc = 1
+    max_inc = max(max_inc, inc)
 
-rowarr = [1]*arrlen
-colarr = [1]*arrlen
-biggercnt = 1
-for idx in range(arrlen-1):
-    if idx + 1 < arrlen:
-        if arr[idx] <= arr[idx+1]:
-            rowarr[idx+1] += rowarr[idx]
-        if arr[idx+1] <= arr[idx]:
-            colarr[idx+1] += colarr[idx]
-maxrow = max(rowarr)
-maxcol = max(colarr)
-result = max(maxrow,maxcol)
-print(result)
+# 감소(같거나 작아지는) 구간
+dec = 1
+max_dec = 1
+for i in range(1, n):
+    if arr[i-1] >= arr[i]:
+        dec += 1
+    else:
+        dec = 1
+    max_dec = max(max_dec, dec)
+
+print(max(max_inc, max_dec))
