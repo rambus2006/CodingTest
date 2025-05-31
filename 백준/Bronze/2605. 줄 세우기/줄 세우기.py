@@ -1,8 +1,6 @@
-import sys
-
-n = int(sys.stdin.readline())
-arr = list(map(int,sys.stdin.readline().split()))
-result =[]
-for idx in range(n):
-    result.insert(arr[idx],idx+1)
-print(*result[::-1])
+studentnum = int(input())
+num = list(map(int,input().split()))
+res = []
+for s in range(studentnum):
+    res.insert(len(res)-num[s],s+1)
+print(*res)
