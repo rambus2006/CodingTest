@@ -1,34 +1,56 @@
-def check(tmp):
-    # 가로
-    for i in range(5):
-        if bingo[i] == [0] * 5:
-            tmp += 1
-    # 세로
-    for i in range(5):
-        if all(bingo[j][i] == 0 for j in range(5)):
-            tmp += 1
-    # 대각선1
-    if all(bingo[i][i] == 0 for i in range(5)):
-        tmp += 1
-    # 대각선2
-    if all(bingo[i][4 - i] == 0 for i in range(5)):
-        tmp += 1
-    return tmp
+'''
+[문제 분석]
+> 구하라는 값
+사회자가 몇번째 수를 부른 후 철수가 빙고를 외치게 되는지 출력
 
-bingo = [list(map(int, input().split())) for _ in range(5)]
-speak = []
+> 조건
+빙고판은 5*5 크기
+수 범위는 1-25 까지
+
+> 입력값
+빙고판 (5줄)
+사회자가 부르는 번호 순서(5줄)
+
+--------------------------
+> 해결 논리
+- 사회자 순서를 순회하면서 해당 번호가 있으면 x 로 변경한다.
+- x 로 변경할 때)
+   - cnt += 1
+   - x가 가로, 세로,대각선인지 순회한다. (True 면 멈춤) / False면 밖으로 )
+
+
+
+> 실수한 부분
+'''
+def count_bingo(board):
+    bingo = 0
+    for row in board:
+        if all(x == 0 for x in row):
+            bingo += 1
+    for col in range(5):
+        if all(board[row][col] == 0 for row in range(5)):
+            bingo += 1
+    # 대각선 검사 (왼쪽 위 → 오른쪽 아래)
+    if all(board[i][i] == 0 for i in range(5)):
+        bingo += 1
+    # 대각선 검사 (오른쪽 위 → 왼쪽 아래)
+    if all(board[i][4-i] == 0 for i in range(5)):
+        bingo += 1
+    return bingo
+
+
+bingogrid = [list(map(int,input().split())) for _ in range(5)]
+calls = []
 for _ in range(5):
-    speak += list(map(int, input().split()))
-cnt = 0
-tmp = 0
-for i in range(25):
-    for x in range(5):
-        for y in range(5):
-            if speak[i] == bingo[x][y]:
-                bingo[x][y] = 0
-                cnt += 1
-    if cnt >= 12:
-        result = check(tmp)
-        if result >= 3:
-            print(i + 1)  # 배열은 0 부터 시작했으므로 
-            break
+    calls += list(map(int, input().split()))
+
+for idx,num in enumerate(calls):
+    for row in range(5):
+        for col in range(5):
+            if bingogrid[row][col] == num:
+                bingogrid[row][col] = 0
+    if count_bingo(bingogrid) >= 3:
+        print(idx + 1)
+        break
+
+
