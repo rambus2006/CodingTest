@@ -1,9 +1,8 @@
-a, b, c, m = map(int, input().split())
-stress = 0
-work = 0
+a,b,c,m = map(int,input().split())
 hours = 24
-
-if a > m:
+work = 0
+stress = 0
+if a > m :
     print(0)
 else:
     while hours > 0:
@@ -11,6 +10,6 @@ else:
             stress += a
             work += b
         else:
-            stress = max(0, stress - c)
+            stress = max(0,stress - c)
         hours -= 1
     print(work)
