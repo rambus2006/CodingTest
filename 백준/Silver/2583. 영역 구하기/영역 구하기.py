@@ -6,10 +6,9 @@ queue = deque()
 for _ in range(k):
     start_x,start_y,end_x,end_y = map(int,input().split())
     queue.append((start_x,start_y,end_x,end_y))
-    
-    for y in range(start_y,end_y):
-        for x in range(start_x,end_x):
-            grid[row-y-1][x] += 1
+    for w in range(start_x,end_x):
+        for h in range(start_y,end_y):
+            grid[h][w] += 1
 # 여기까지는 잘 만듬 
 
 
@@ -19,21 +18,21 @@ visited = [[False] * col for _ in range(row)]
 area = []
 
 # bfs 
-def FindAreaBFS(st_y,st_x):
+def FindAreaBFS(st_x,st_y):
     queue = deque()
-    queue.append((st_y,st_x))
+    queue.append((st_x,st_y))
     cnt = 1
-    visited[st_y][st_x] = True
+    visited[st_x][st_y] = True
     while queue:
-        y,x = queue.popleft()
+        x,y = queue.popleft()
         for dir in range(4):
             nx = x + dx[dir]
             ny = y + dy[dir]
 
-            if 0 <= ny < row and 0 <= nx < col and not visited[ny][nx]:
-                if grid[ny][nx] == 0: 
-                    visited[ny][nx] = True
-                    queue.append((ny,nx))
+            if 0 <= nx < row and 0 <= ny < col and not visited[nx][ny]:
+                if grid[nx][ny] == 0: 
+                    visited[nx][ny] = True
+                    queue.append((nx,ny))
                     cnt += 1
 
     return cnt
