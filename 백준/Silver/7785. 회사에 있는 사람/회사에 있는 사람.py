@@ -1,14 +1,12 @@
-T: int = int(input())
-mp: dict[str, str] = {}
+n = int(input())
+present:set[str] = set()
 
-for _ in range(T):
-    name, state = input().split()
-    mp[name] = state
+for _ in range(n):
+    name,action = input().split()
 
-result: list[str] = sorted(
-    [name for name, state in mp.items() if state == "enter"],
-    reverse=True
-)
-
-for r in result:
-    print(r)
+    if action == "enter": 
+        present.add(name)
+    else: 
+        present.discard(name)
+for name in sorted(present,reverse=True):
+    print(name)
