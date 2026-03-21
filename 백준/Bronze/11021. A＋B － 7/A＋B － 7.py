@@ -1,7 +1,4 @@
-import sys
-
-n = int(sys.stdin.readline().rstrip())
-
-for i in range(n):
-    a,b = list(map(int,sys.stdin.readline().split()))
-    print(f"Case #{i+1}: {a + b}")
+T = int(input())
+for tc in range(1,T+1):
+    a,b = map(int,input().split())
+    print(f"Case #{tc}:",a+b)
