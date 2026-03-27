@@ -1,9 +1,37 @@
+'''
+문제 링크: https://www.acmicpc.net/problem/13416
+
+> 구하라는 값
+환규가 N일간 규칙을 지키며 최적의 투자를 했을 경우 얻을 수 있었을 최대 이윤을 출력하는 프로그램을 작성
+
+> 조건
+- 규칙: A,B,C사의 가장 큰 값. 음수인 경우 사지 않는다.(0과의 비교도 고려)
+> 입력
+2 # 테스트 케이스 개수
+4 # 주식 데이터 개수(행)
+500 800 200
+300 0 300
+-100 -200 -400
+600 200 300
+3
+451 234 309
+224 334 467
+143 246 245
+> 출력
+1700
+1164
+> 풀이
+각각 N 행으로 입력을 받는다.
+각 행 안에서 최댓값을 구한다.
+최댓값과 0을 비교한다.
+더한다.
+'''
 T = int(input())
 for tc in range(1,T+1):
-    total = 0
+    result = 0
     N = int(input())
+
     for n in range(0,N):
-        li = [0,]
-        li = li + list(map(int,input().split()))
-        total += max(li)
-    print(total)
+        arr = [0] + list(map(int,input().split()))
+        result += max(arr)
+    print(result)
