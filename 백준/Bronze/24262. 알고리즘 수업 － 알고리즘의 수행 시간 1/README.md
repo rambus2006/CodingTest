@@ -1,6 +1,6 @@
-# [Bronze IV] 알고리즘 수업 - 알고리즘의 수행 시간 2 - 24263 
+# [Bronze V] 알고리즘 수업 - 알고리즘의 수행 시간 1 - 24262 
 
-[문제 링크](https://www.acmicpc.net/problem/24263) 
+[문제 링크](https://www.acmicpc.net/problem/24262) 
 
 ### 성능 요약
 
@@ -23,10 +23,8 @@
 <p>MenOfPassion 알고리즘은 다음과 같다.</p>
 
 <pre>MenOfPassion(A[], n) {
-    sum <- 0;
-    for i <- 1 to n
-        sum <- sum + A[i]; # 코드1
-    return sum;
+    i = ⌊n / 2⌋;
+    return A[i]; # 코드1
 }</pre>
 
 ### 입력 
